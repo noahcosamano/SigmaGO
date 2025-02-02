@@ -7,21 +7,15 @@ public enum dayTypes {
     BATTLE(new int[]{26,35}),
     REST(new int[]{36,42}),
     BOSS_BATTLE(new int[]{43,50}),
-    CHANCE(new int[]{50,60}),
-    NO_EVENT;
+    CHANCE(new int[]{50,60});
 
-    private int[] odds;
+    private final int[] odds;
 
-    private dayTypes(int[] odds) {
+    dayTypes(int[] odds) {
         this.odds = odds;
     }
 
-    // overloaded constructor
-    private dayTypes() {
-
-    }
-
-    public int[] getOdds() {return this.odds;}
+    public int[] getOdds() {return odds;}
 
     @Override
     public String toString() {

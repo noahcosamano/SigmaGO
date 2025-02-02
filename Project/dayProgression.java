@@ -4,13 +4,13 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day {
+public class dayProgression {
     int currentDay;
     int startingDay = 1;
     int currentStorageIndex = 0;
     List<List<String>> dayStorage;
     
-    public Day() {
+    public dayProgression() {
         dayStorage = new ArrayList<>();
     }
 
@@ -24,17 +24,20 @@ public class Day {
     }
 
     public dayTypes determineEvent() {
-        int eventSeed = randomInt();
+        while(true) {
+            int eventSeed = randomInt();
 
-        System.out.println("Generated event seed: " + eventSeed);
+            System.out.println("Generated event seed: " + eventSeed);
 
-        for(dayTypes type : dayTypes.values()) {
-            if(eventSeed >= type.getOdds()[0] && eventSeed <= type.getOdds()[1]) {
-                return type;
-            } 
+            for(dayTypes type : dayTypes.values()) {
+                if(eventSeed >= type.getOdds()[0] && eventSeed <= type.getOdds()[1]) {
+                    if(currentDay <= 10 && type == dayTypes.BOSS_BATTLE) {
+                        continue;
+                    }
+                    return type;
+                } 
+            }
         }
-
-        return dayTypes.NO_EVENT;
     }
 
     public void fillDayStorage(int day, dayTypes event) {
